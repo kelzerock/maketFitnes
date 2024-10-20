@@ -204,6 +204,41 @@ body {
   line-height: 1.75;
 }
 
+.title-medium {
+  font-size: clamp(20px, 2.08vw, 40px);
+  line-height: 1.3;
+  color: var(--color-light);
+}
+
+.backdrop-title {
+  position: relative;
+  z-index: 2;
+}
+
+.backdrop-title::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  right: calc(100% + 8px);
+  display: block;
+  width: 26px;
+  aspect-ratio: 1;
+  background: url("./icons/plus.svg") center/contain no-repeat;
+}
+
+.backdrop-title::after {
+  content: attr(data-title);
+  color: transparent;
+  z-index: -1;
+  font-size: 2.8em;
+  font-family: var(--font-family-accent);
+  -webkit-text-stroke: 1px var(--color-light-gray);
+  text-stroke: 1px var(--color-light-gray);
+  position: absolute;
+  top: -0.45em;
+  left: -0.6em;
+}
+
 .container {
   max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
   margin-inline: auto;
@@ -224,6 +259,14 @@ a {
 
 a:hover {
   color: var(--color-light-gray);
+}
+
+p {
+  margin-block: 0;
+}
+
+p:not([class]):not(:last-child) {
+  margin-bottom: 24px;
 }
 
 h1,
@@ -263,10 +306,42 @@ h6 {
   border: none;
   border-radius: var(--border-radius);
   white-space: nowrap;
+  text-decoration: none;
 }
 
 .button:hover {
   background-color: var(--color-light-gray);
+}
+
+.button.transparent {
+  height: var(--input-height);
+  padding-left: 31px;
+  padding-right: 80px;
+  background-color: transparent;
+  border: var(--border);
+  position: relative;
+}
+
+.button.transparent::after {
+  content: "";
+  display: block;
+  height: 100%;
+  aspect-ratio: 1;
+  border: var(--border);
+  background: url("./icons/arrow-rotate.svg") center/70% no-repeat;
+  border-radius: 50%;
+  position: absolute;
+  right: 0;
+}
+
+.button.transparent:hover {
+  color: var(--color-dark);
+  background-color: var(--color-light-gray);
+}
+
+.button.transparent:hover::after {
+  border: var(--color-dark) 2px solid;
+  background: url("./icons/arrow-rotate-dark.svg") center/70% no-repeat;
 }
 
 .header {
@@ -293,7 +368,7 @@ h6 {
   display: inline-flex;
   column-gap: 7px;
   align-items: center;
-  height:  var(--header-height);
+  height: var(--header-height);
   text-decoration: none;
   text-transform: uppercase;
   font-weight: 700;
@@ -363,11 +438,11 @@ h6 {
 }
 
 .banner-info::before {
-  content: '';
+  content: "";
   width: clamp(60px, 10.1vw, 194px);
   aspect-ratio: 1;
   margin-right: 30px;
-  background: url('./icons/arrow.svg') center/contain no-repeat;
+  background: url("./icons/arrow.svg") center/contain no-repeat;
 }
 
 .banner-title {
@@ -391,11 +466,11 @@ h6 {
   border-radius: 50%;
   padding: 7px;
   background-color: transparent;
-  border: none
+  border: none;
 }
 
 .banner-pagination-button::after {
-  content: '';
+  content: "";
   width: 10px;
   aspect-ratio: 1;
   border: var(--border);
@@ -409,6 +484,43 @@ h6 {
 
 .banner-pagination-button:not(.is-current):hover::after {
   border-color: var(--color-light-gray);
+}
+
+.motivation-item:nth-child(even) {
+  background-color: var(--color-dark-alternate);
+}
+.motivation-item:nth-child(even) .motivation-card {
+  flex-direction: row-reverse;
+}
+
+.motivation-card {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  column-gap: clamp(30px, 10.42vw, 210px);
+}
+
+.motivation-card-image {
+  margin-block: -60px;
+}
+
+.motivation-card-body {
+  padding-left: 35px;
+}
+
+.motivation-card-title:not(:last-child) {
+  margin-bottom: 14px;
+}
+
+.motivation-card-description {
+  max-width: 400px;
+  margin-bottom: 36px;
+}
+
+@media (max-width: 1919px) {
+  .motivation-card-image {
+    margin-block: -20px;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -435,6 +547,16 @@ h6 {
   .banner {
     row-gap: 10px;
   }
+
+  .motivation-card {
+    padding-block: 50px;
+  }
+
+  .motivation-card-image {
+    max-width: 30%;
+    height: auto;
+    margin-block: 0;
+  }
 }
 
 @media (max-width: 767px) {
@@ -457,12 +579,30 @@ h6 {
   .header-actions {
     column-gap: 15px;
   }
-  
+
   .banner-info {
     margin-bottom: 5px;
   }
 
   .banner-info::before {
     margin-right: 10px;
+  }
+
+  .motivation-card,
+  .motivation-item:nth-child(even) .motivation-card {
+    flex-direction: column-reverse;
+  }
+
+  .motivation-card {
+    padding-block: 30px;
+    row-gap: 30px;
+  }
+
+  .motivation-card-image {
+    max-width: 60%;
+  }
+
+  .motivation-card-description:not(:last-child) {
+    margin-bottom: 20px;
   }
 }
