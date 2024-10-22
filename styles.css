@@ -21,8 +21,8 @@
 }
 
 /**
-  Нормализация блочной модели
- */
+Нормализация блочной модели
+*/
 *,
 ::before,
 ::after {
@@ -30,26 +30,26 @@
 }
 
 /**
-   Убираем внутренние отступы слева тегам списков,
-   у которых есть атрибут class
-  */
+Убираем внутренние отступы слева тегам списков,
+у которых есть атрибут class
+*/
 :where(ul, ol):where([class]) {
   padding-left: 0;
 }
 
 /**
-   Убираем внешние отступы body и двум другим тегам,
-   у которых есть атрибут class
-  */
+Убираем внешние отступы body и двум другим тегам,
+у которых есть атрибут class
+*/
 body,
 :where(blockquote, figure):where([class]) {
   margin: 0;
 }
 
 /**
-   Убираем внешние отступы вертикали нужным тегам,
-   у которых есть атрибут class
-  */
+Убираем внешние отступы вертикали нужным тегам,
+у которых есть атрибут class
+*/
 :where(h1, h2, h3, h4, h5, h6, p, ul, ol, dl):where([class]) {
   margin-block: 0;
 }
@@ -65,9 +65,9 @@ body,
 }
 
 /**
-   Убираем стандартный маркер маркированному списку,
-   у которого есть атрибут class
-  */
+Убираем стандартный маркер маркированному списку,
+у которого есть атрибут class
+*/
 :where(ul[class]) {
   list-style: none;
 }
@@ -77,10 +77,10 @@ body,
 }
 
 /**
-   Обнуляем вертикальные внешние отступы параграфа,
-   объявляем локальную переменную для внешнего отступа вниз,
-   чтобы избежать взаимодействие с более сложным селектором
-  */
+Обнуляем вертикальные внешние отступы параграфа,
+объявляем локальную переменную для внешнего отступа вниз,
+чтобы избежать взаимодействие с более сложным селектором
+*/
 p {
   --paragraphMarginBottom: 24px;
 
@@ -88,24 +88,24 @@ p {
 }
 
 /**
-   Внешний отступ вниз для параграфа без атрибута class,
-   который расположен не последним среди своих соседних элементов
-  */
+Внешний отступ вниз для параграфа без атрибута class,
+который расположен не последним среди своих соседних элементов
+*/
 p:where(:not([class]):not(:last-child)) {
   margin-bottom: var(--paragraphMarginBottom);
 }
 
 /**
-   Упрощаем работу с изображениями
-  */
+Упрощаем работу с изображениями
+*/
 img {
   display: block;
   max-width: 100%;
 }
 
 /**
-   Наследуем свойства шрифт для полей ввода
-  */
+Наследуем свойства шрифт для полей ввода
+*/
 input,
 textarea,
 select,
@@ -115,15 +115,15 @@ button {
 
 html {
   /**
-     Пригодится в большинстве ситуаций
-     (когда, например, нужно будет "прижать" футер к низу сайта)
-    */
+Пригодится в большинстве ситуаций
+(когда, например, нужно будет "прижать" футер к низу сайта)
+*/
   height: 100%;
 }
 
 /**
-   Плавный скролл
-  */
+Плавный скролл
+*/
 html,
 :has(:target) {
   scroll-behavior: smooth;
@@ -131,19 +131,19 @@ html,
 
 body {
   /**
-     Пригодится в большинстве ситуаций
-     (когда, например, нужно будет "прижать" футер к низу сайта)
-    */
+Пригодится в большинстве ситуаций
+(когда, например, нужно будет "прижать" футер к низу сайта)
+*/
   min-height: 100%;
   /**
-     Унифицированный интерлиньяж
-    */
+Унифицированный интерлиньяж
+*/
   line-height: 1.5;
 }
 
 /**
-   Приводим к единому цвету svg-элементы
-  */
+Приводим к единому цвету svg-элементы
+*/
 svg *[fill] {
   fill: currentColor;
 }
@@ -152,16 +152,16 @@ svg *[stroke] {
 }
 
 /**
-   Чиним баг задержки смены цвета при взаимодействии с svg-элементами
-  */
+Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+*/
 svg * {
   transition-property: fill, stroke;
 }
 
 /**
-   Удаляем все анимации и переходы для людей,
-   которые предпочитают их не использовать
-  */
+Удаляем все анимации и переходы для людей,
+которые предпочитают их не использовать
+*/
 @media (prefers-reduced-motion: reduce) {
   *,
   ::before,
@@ -213,6 +213,14 @@ body {
   font-size: clamp(24px, 3.12vw, 60px);
 }
 
+.section-description {
+  font-size: 20px;
+  line-height: 1.65;
+  text-transform: uppercase;
+  color: var(--color-light);
+  text-align: center;
+}
+
 .backdrop-title {
   position: relative;
   z-index: 2;
@@ -233,17 +241,18 @@ body {
   content: attr(data-title);
   color: transparent;
   z-index: -1;
-  font-size: 2.8em;
+  font-size: 2.2em;
   font-family: var(--font-family-accent);
   -webkit-text-stroke: 1px var(--color-light-gray);
   text-stroke: 1px var(--color-light-gray);
   position: absolute;
-  top: -0.45em;
+  line-height: 1;
+  top: -0.3em;
   left: -0.6em;
 }
 
 .backdrop-title.centered::after {
-  top: -0.55em;
+  top: -0.25em;
   left: 50%;
   translate: -50% 0;
 }
@@ -300,6 +309,11 @@ h6 {
   clip-path: inset(100%) !important;
   clip: rect(0 0 0 0) !important;
   overflow: hidden !important;
+}
+
+.container-wide {
+  max-width: 1920px;
+  margin-inline: auto;
 }
 
 .input {
@@ -556,8 +570,6 @@ h6 {
 .training-types {
   position: relative;
   background-color: var(--color-dark);
-  max-width: 1920px;
-  margin-inline: auto;
   padding-top: 70px;
   padding-bottom: 120px;
 }
@@ -575,11 +587,16 @@ h6 {
   align-items: center;
   row-gap: 32px;
   padding-top: var(--trainigTypesItemSiza);
-  background: url('./icons/arrow-transparent.svg') 100% 0/var(--trainigTypesItemSiza) no-repeat;
+  background: url("./icons/arrow-transparent.svg") 100% 0 /
+    var(--trainigTypesItemSiza) no-repeat;
 }
 
 .training-types-item-title {
   font-size: 16px;
+}
+
+.join-us {
+  background-color: var(--color-dark-alternate);
 }
 
 .join-us-video-wrapper {
@@ -587,7 +604,8 @@ h6 {
   position: relative;
   justify-content: center;
   align-items: center;
-  background: url('./images/join-us.jpg') center/cover  no-repeat var(--color-dark-alternate);
+  background: url("./images/join-us.jpg") center/cover no-repeat
+    var(--color-dark-alternate);
   padding: 150px 30px;
 }
 
@@ -618,10 +636,10 @@ h6 {
 }
 
 .join-us-video-play-button::after {
-  content: '';
+  content: "";
   height: 26px;
   aspect-ratio: 1;
-  background: url('./icons/arrow-rotate.svg') center/contain no-repeat;
+  background: url("./icons/arrow-rotate.svg") center/contain no-repeat;
   transition-duration: var(--transition-duration);
 }
 
@@ -631,7 +649,7 @@ h6 {
 }
 
 .join-us-video-play-button:hover::after {
-  background: url('./icons/arrow-rotate-dark.svg') center/contain no-repeat;
+  background: url("./icons/arrow-rotate-dark.svg") center/contain no-repeat;
 }
 
 .join-us-body {
@@ -647,16 +665,16 @@ h6 {
 }
 
 .join-us-title::after {
-  content: '';
+  content: "";
   display: inline-block;
   height: 0.7em;
   aspect-ratio: 1;
-  background: url('./icons/arrow.svg') center/contain no-repeat;
+  background: url("./icons/arrow.svg") center/contain no-repeat;
   scale: 1 -1;
   margin-left: 0.14em;
 }
 
-.join-us-title:not(:last-child){
+.join-us-title:not(:last-child) {
   margin-bottom: 130px;
 }
 
@@ -671,13 +689,7 @@ h6 {
   margin-bottom: 52px;
 }
 
-.join-us-form-subtitle {
-  font-size: 20px;
-  line-height: 1.65;
-  text-transform: uppercase;
-  color: var(--color-light);
-  text-align: center;
-}
+
 
 .join-us-form-body {
   display: flex;
@@ -687,6 +699,62 @@ h6 {
 
 .join-us-form-input {
   max-width: 400px;
+}
+
+.location {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.location-map-image {
+  height: auto;
+}
+
+.location-body {
+  padding: 80px 15px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.location-title:not(:last-child) {
+  margin-bottom: 14px;
+}
+
+.location-description {
+  max-width: 490px;
+}
+
+.location-description:not(:last-child) {
+  margin-bottom: 37px;
+}
+
+.family {
+  border-color: var(--color-dark-alternate);
+}
+
+.family-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 7px;
+  padding-top: 132px;
+  padding-bottom: 62px;
+  text-align: center;
+}
+
+.family-body {
+  display: flex;
+  justify-content: center;
+  column-gap: 26px;
+  scroll-snap-type: x mandatory;
+  overflow-x: scroll;
+}
+
+.family-image {
+  scroll-snap-align: start;
 }
 
 @media (max-width: 1919px) {
@@ -742,6 +810,15 @@ h6 {
 
   .join-us-title:not(:last-child) {
     margin-bottom: 80px;
+  }
+
+  .location {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .family-image {
+    height: 360px;
   }
 }
 
@@ -806,12 +883,11 @@ h6 {
     width: 140px;
   }
 
-
   .join-us-title:not(:last-child) {
     margin-bottom: 40px;
   }
 
-  .join-us-form-subtitle {
+  .section-description  {
     font-size: 16px;
   }
 
@@ -819,5 +895,25 @@ h6 {
     flex-direction: column;
     align-items: center;
     row-gap: 20px;
+  }
+
+  .location-body {
+    padding-block: 40px;
+  }
+
+  .location-description:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  .family-header {
+    padding-top: 80px;
+    padding-bottom: 50px;
+  }
+
+  .family-body {
+    column-gap: 12px;
+  }
+  .family-image {
+    height: 180px;
   }
 }
